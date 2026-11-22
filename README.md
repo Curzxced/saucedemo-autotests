@@ -1,4 +1,4 @@
-# SauceDemo UI Autotests
+# Примеры автотестов веб SauceDemo UI
 
 UI-автотесты для https://www.saucedemo.com на Python + pytest + Selenium.
 
@@ -13,6 +13,6 @@ UI-автотесты для https://www.saucedemo.com на Python + pytest + Se
 - Пустые поля (параметризация)
 - Проверка сообщений об ошибках
 
-## Запуск (также лучше вирутальное окружение включить(venv))
+## Запуск
 pip install -r requirements.txt
 pytest -v
