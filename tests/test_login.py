@@ -6,17 +6,14 @@ from pages.login_page import LoginPage
 
 @pytest.fixture
 def login_page(driver):
-    """Фикстура для инициализации и открытия страницы логина перед каждым тестом."""
     return LoginPage(driver).open()
 
 
 class TestLogin:
-    """Набор тестов для проверки авторизации на SauceDemo."""
-
     def test_successful_login(self, driver, login_page):
         login_page.login("standard_user", "secret_sauce")
 
-        # Пометка: в реальных проектах URL проверяют через явное ожидание, чтобы избежать флаки-тестов
+        # ждем редиректа в каталог
         WebDriverWait(driver, 5).until(EC.url_contains("/inventory.html"))
         assert driver.current_url.endswith("/inventory.html"), (
             f"Ожидался переход в каталог, но текущий URL: {driver.current_url}"
@@ -27,7 +24,7 @@ class TestLogin:
 
         error_text = login_page.get_error_text()
         assert "Sorry, this user has been locked out" in error_text, (
-            f"Некорректный текст ошибки при блокировке: '{error_text}'"
+            f"Некорректный текст ошибки: '{error_text}'"
         )
 
     @pytest.mark.parametrize(

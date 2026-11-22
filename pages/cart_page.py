@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class CartPage:
     CHECKOUT_BTN = (By.CSS_SELECTOR, '[data-test="checkout"]')
     REMOVE_BACKPACK_BTN = (By.CSS_SELECTOR, '[data-test="remove-sauce-labs-backpack"]')
@@ -16,6 +17,8 @@ class CartPage:
 
     def remove_backpack(self):
         self.wait.until(EC.element_to_be_clickable(self.REMOVE_BACKPACK_BTN)).click()
+        # ждем пока карточка товара исчезнет из DOM
+        self.wait.until(EC.invisibility_of_element_located(self.CART_ITEMS))
 
     def click_checkout(self):
-        self.driver.find_element(*self.CHECKOUT_BTN).click()
+        self.wait.until(EC.element_to_be_clickable(self.CHECKOUT_BTN)).click()

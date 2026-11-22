@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class CheckoutPage:
     FIRST_NAME = (By.CSS_SELECTOR, '[data-test="firstName"]')
     LAST_NAME = (By.CSS_SELECTOR, '[data-test="lastName"]')
